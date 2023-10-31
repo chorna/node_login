@@ -9,6 +9,8 @@
   "author": "Christian Horna <christian@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.4"
   }
 }
