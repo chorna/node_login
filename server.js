@@ -6,6 +6,15 @@ const server = require('http').Server(app);
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const router = require('./network/routes.js');
+const config = require('./config.js');
+const db = require('./db.js');
+
+const user = encodeURIComponent(config.dbUser);
+const password = encodeURIComponent(config.dbPassword);
+const host = encodeURIComponent(config.dbHost);
+const dataBase = encodeURIComponent(config.dbName);
+
+db(`mongodb+srv://${user}:${password}@${host}/${dataBase}`);
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
