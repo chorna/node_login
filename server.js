@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-
+const path = require('path');
 const server = require('http').Server(app);
-
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
 const router = require('./network/routes.js');
 const config = require('./config.js');
 const db = require('./db.js');
@@ -20,9 +20,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 router(app);
 
-app.use('/app', express.static('public'));
-
+app.get('/', (req, res) => {
+    res.redirect('/login');
+});
 
 server.listen(3000, () => console.log('localhost:3000'));
