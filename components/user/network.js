@@ -8,10 +8,10 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-    const { first_name, last_name, username, email, password } = req.body;
-    controller.addUser(username, password, first_name, last_name, email)
+    const { first_name, last_name, username, email, password, password2 } = req.body;
+    controller.addUser(username, password, password2, first_name, last_name, email, password2)
         .then((user) => res.redirect(`/login`))
-        .catch(err => res.render('register', {error: 'Error: Usuario registrado'}))
+        .catch(err => res.render('register', {error: err}))
 
 });
 

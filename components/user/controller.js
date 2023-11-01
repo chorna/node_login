@@ -1,11 +1,20 @@
 const store = require('./store');
 const bcrypt = require('bcrypt')
 
-addUser = (username, password, first_name, last_name, email) => {
+addUser = (username, password, password2, first_name, last_name, email) => {
     return new Promise((resolve, reject) => {
-        if (!username || !password) {
+        if (!username || !password || !password2) {
             reject('Datos incorrectos');
         }
+
+        if (password != password2){
+            reject('Las contraseñas no coinciden')
+        }
+
+        if (password.length <= 6) {
+            reject('La contraseña debe tener como mínimo 6 caracteres')
+        }
+
         const saltRounds = 5;
 
         const submitPassword = password
